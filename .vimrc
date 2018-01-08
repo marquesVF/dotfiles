@@ -11,7 +11,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Bundle 'Valloric/YouCompleteMe'
-Plugin 'vim-syntastic/syntastic'
+" Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
@@ -20,6 +20,10 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'w0rp/ale'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'alvan/vim-closetag'
+Plugin 'dracula/vim'
 
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
@@ -97,6 +101,9 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" For quick comments
+filetype plugin on
+
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
     \ set tabstop=4
     \ set softtabstop=4
@@ -106,15 +113,44 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
     \ set autoindent
     \ set fileformat=unix
 
-au BufNewFile,BufRead *.js,*.html,*.css
+au BufNewFile *.js,*.html,*.css
     \ set tabstop=2
     \ set softtabstop=2
     \ set shiftwidth=2
 
 " Set colorscheme
-if has('gui_running')
+ if has('gui_running')
       set background=dark
     colorscheme solarized
-else
-  colorscheme zenburn
-endif
+ else
+ " colorscheme zenburn
+    color dracula
+ endif
+
+ " HTML stuff
+ " filenames like *.xml, *.html, *.xhtml, ...
+" Then after you press <kbd>&gt;</kbd> in these files, this plugin will try to close the current tag.
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non closing tags self closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+" integer value [0|1]
+" This will make the list of non closing tags case sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+"
+let g:closetag_emptyTags_caseSensitive = 1
+
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+"
+let g:closetag_close_shortcut = '<leader>>'
+
+" Trying to solve the tag closing issue
+autocmd FileType html 
+set omnifunc=htmlcomplete#CompleteTags
