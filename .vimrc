@@ -30,6 +30,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'bling/vim-airline'
 Plugin 'mileszs/ack.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
@@ -53,6 +55,7 @@ set smarttab
 
 set shiftwidth=2
 set tabstop=2
+set colorcolumn=80
 
 set lbr
 set tw=500
@@ -111,9 +114,9 @@ nnoremap <C-H> <C-W><C-H>
 filetype plugin on
 
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
     \ set textwidth=79
     \ set expandtab
     \ set autoindent
@@ -160,3 +163,9 @@ let g:closetag_close_shortcut = '<leader>>'
 " Trying to solve the tag closing issue
 autocmd FileType html 
 set omnifunc=htmlcomplete#CompleteTags
+
+" -- Snippet plugin related configuration
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
