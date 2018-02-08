@@ -24,6 +24,12 @@ Plugin 'w0rp/ale'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'alvan/vim-closetag'
 Plugin 'dracula/vim'
+Plugin 'tpope/vim-rails'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-surround'
+Plugin 'bling/vim-airline'
+Plugin 'mileszs/ack.vim'
+Plugin 'nathanaelkane/vim-indent-guides'
 
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
@@ -45,8 +51,8 @@ let python_highlight_all=1
 set expandtab
 set smarttab
 
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 
 set lbr
 set tw=500
