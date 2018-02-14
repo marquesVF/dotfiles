@@ -22,6 +22,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'w0rp/ale'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'alvan/vim-closetag'
 Plugin 'dracula/vim'
 Plugin 'tpope/vim-rails'
@@ -32,6 +33,8 @@ Plugin 'mileszs/ack.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'joukevandermaas/vim-ember-hbs'
+Plugin 'jiangmiao/auto-pairs'
 
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
@@ -56,6 +59,7 @@ set smarttab
 set shiftwidth=2
 set tabstop=2
 set colorcolumn=80
+set cursorline
 
 set lbr
 set tw=500
@@ -113,19 +117,19 @@ nnoremap <C-H> <C-W><C-H>
 " For quick comments
 filetype plugin on
 
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
+"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h
+    "\ set tabstop=2
+    "\ set softtabstop=2
+    "\ set shiftwidth=2
+    "\ set textwidth=79
+    "\ set expandtab
+    "\ set autoindent
+    "\ set fileformat=unix
 
-au BufNewFile *.js,*.html,*.css
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
+"au BufNewFile *.js,*.html,*.css
+    "\ set tabstop=2
+    "\ set softtabstop=2
+    "\ set shiftwidth=2
 
 " Set colorscheme
  if has('gui_running')
