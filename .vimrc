@@ -35,6 +35,9 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'joukevandermaas/vim-ember-hbs'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'myusuf3/numbers.vim'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
@@ -91,6 +94,7 @@ noremap <Right> <Nop>
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
+set autoread
 
 " NerdTree related config
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
@@ -132,13 +136,8 @@ filetype plugin on
     "\ set shiftwidth=2
 
 " Set colorscheme
- if has('gui_running')
-      set background=dark
-    colorscheme solarized
- else
- " colorscheme zenburn
-    color dracula
- endif
+colorscheme dracula
+set background=dark
 
  " HTML stuff
  " filenames like *.xml, *.html, *.xhtml, ...
@@ -173,3 +172,7 @@ set omnifunc=htmlcomplete#CompleteTags
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Toggle between relative and absolute numbering
+nnoremap <F3> :NumbersToggle<CR>
+nnoremap <F4> :NumbersOnOff<CR>
