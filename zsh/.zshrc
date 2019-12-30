@@ -102,9 +102,17 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-eval "`fnm env --multi`"
-
-PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
-
 bindkey "[C" forward-word
 bindkey "[D" backward-word
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export LC_ALL=en_US.UTF-8
+
+# GIT ALIAS
+alias hgit="git for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)'"
+alias hgito="git for-each-ref --sort=committerdate refs/remotes/origin/ --format='%(committerdate:short) %(refname:short)'"
+alias gcs="git checkout staging"
+alias gcwip="git add '*.ts' '*.tsx' '*py' && git commit -m '[WIP]'"
+alias gane="git add . && git commit --amend --no-edit"
+

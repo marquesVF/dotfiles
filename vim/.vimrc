@@ -60,7 +60,6 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-fugitive' " Something related to git
 Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'} " Status bar <3
-Plug 'w0rp/ale' " For syntax checking
 Plug 'scrooloose/nerdcommenter'
 Plug 'alvan/vim-closetag'
 "Plug 'https://github.com/wesQ3/vim-windowswap'
@@ -84,6 +83,11 @@ Plug 'neoclide/coc-prettier'
 "Plug 'peitalin/vim-jsx-typescript'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'ap/vim-buftabline'
+Plug 'nacitar/a.vim'
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
+Plug 'neoclide/coc-git'
+Plug 'burntsushi/ripgrep'
 
 " Make sure you use single quotes
 
@@ -92,9 +96,6 @@ Plug 'junegunn/vim-easy-align'
 
 " Any valid git URL is allowed
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-
-" Multiple Plug commands can be written in a single line using | separators
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -160,7 +161,7 @@ noremap ,im :TsuImport
 let g:UltiSnipsEditSplit="vertical"
 
 " Special configurations for JS files
-autocmd FileType javascript set ts=4 sw=4 sts=4
+autocmd FileType javascript set ts=2 sw=2 sts=2
 autocmd FileType json set ts=2 sw=2 sts=2
 
 autocmd Filetype ruby setlocal expandtab ts=2 sw=2 sts=2
@@ -172,7 +173,7 @@ inoremap <silent><expr> <tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<tab>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-tab> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -270,8 +271,8 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " Buftaline configuration
-nnoremap <C-N> :bnext<CR>
-nnoremap <C-M> :bprev<CR>
+" nnoremap <C-N> :bnext<CR>
+" nnoremap <C-M> :bprev<CR>
 
 nmap <leader>1 <Plug>BufTabLine.Go(1)
 nmap <leader>2 <Plug>BufTabLine.Go(2)
@@ -283,3 +284,55 @@ nmap <leader>7 <Plug>BufTabLine.Go(7)
 nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
+
+" GitGutter configurations
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+
+" Ctag configurations
+nmap <F8> :TagbarToggle<CR>
+
+let g:tagbar_type_typescript = {
+  \ 'ctagsbin' : 'tstags',
+  \ 'ctagsargs' : '-f-',
+  \ 'kinds': [
+    \ 'e:enums:0:1',
+    \ 'f:function:0:1',
+    \ 't:typealias:0:1',
+    \ 'M:Module:0:1',
+    \ 'I:import:0:1',
+    \ 'i:interface:0:1',
+    \ 'C:class:0:1',                                                               
+    \ 'm:method:0:1',
+    \ 'p:property:0:1',
+    \ 'v:variable:0:1',
+    \ 'c:const:0:1',
+  \ ],
+  \ 'sort' : 0
+\ }
+
+" Add color scheme
+colorscheme jellybeans 
+
+" Highlight all instances of word under cursor, when idle.
+" Useful when studying strange source code.
+" Type z/ to toggle highlighting on/off.
+nnoremap z/ :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
+function! AutoHighlightToggle()
+  let @/ = ''
+  if exists('#auto_highlight')
+    au! auto_highlight
+    augroup! auto_highlight
+    setl updatetime=4000
+    echo 'Highlight current word: off'
+    return 0
+  else
+    augroup auto_highlight
+      au!
+      au CursorHold * let @/ = '\V\<'.escape(expand('<cword>'), '\').'\>'
+    augroup end
+    setl updatetime=500
+    echo 'Highlight current word: ON'
+    return 1
+  endif
+endfunction
