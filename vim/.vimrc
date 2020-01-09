@@ -1,7 +1,8 @@
+set updatetime=500
 set hidden
 set number
 set relativenumber
-" set mouse=a
+set mouse=a
 set expandtab
 set smarttab
 set tabstop=4
@@ -22,6 +23,7 @@ set showmatch
 set foldmethod=indent " Enable folding
 set foldlevel=99
 set autoread
+set clipboard=unnamedplus
 
 colo desert
 syntax on
@@ -59,14 +61,14 @@ Plug 'scrooloose/nerdtree' " File explorer
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-fugitive' " Something related to git
-Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'} " Status bar <3
+"Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'} " Status bar <3
 Plug 'scrooloose/nerdcommenter'
 Plug 'alvan/vim-closetag'
 "Plug 'https://github.com/wesQ3/vim-windowswap'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 "Plug 'Quramy/tsuquyomi'
-"Plug 'leafgarland/typescript-vim'
+Plug 'leafgarland/typescript-vim'
 "Plug 'ianks/vim-tsx'
 "Plug 'https://github.com/Valloric/YouCompleteMe'
 Plug 'alvan/vim-closetag'
@@ -88,8 +90,8 @@ Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
 Plug 'neoclide/coc-git'
 Plug 'burntsushi/ripgrep'
-
-" Make sure you use single quotes
+Plug 'nanotech/jellybeans.vim'
+Plug 'eugen0329/vim-esearch'
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
@@ -108,7 +110,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Plug 'fatih/vim-go', { 'tag': '*' }
 
 " Plugin outside ~/.vim/plugged with post-update hook
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Unmanaged plugin (manually installed and updated)
 Plug '~/my-prototype-plugin'
@@ -160,9 +162,10 @@ noremap ,im :TsuImport
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-" Special configurations for JS files
-autocmd FileType javascript set ts=2 sw=2 sts=2
+" Language specific configurations
+autocmd FileType javascript set ts=4 sw=4 sts=4
 autocmd FileType json set ts=2 sw=2 sts=2
+autocmd FileType sql set ts=4 sw=4 sts=4
 
 autocmd Filetype ruby setlocal expandtab ts=2 sw=2 sts=2
 
@@ -252,6 +255,11 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+" Useful Coc commands
+nmap <F4> :CocFix<CR>
+nmap <F3> :CocCommand eslint.executeAutofix<CR>
+nmap <c-j> :CocCommand document.jumpToNextSymbol<CR>
+
 " Using CocList
 " Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
@@ -269,6 +277,9 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+" Autofix
+nnoremap <silent> <space>ff  :<C-u>CocFix<CR>
+
 
 " Buftaline configuration
 " nnoremap <C-N> :bnext<CR>
@@ -292,6 +303,8 @@ nmap [h <Plug>(GitGutterPrevHunk)
 " Ctag configurations
 nmap <F8> :TagbarToggle<CR>
 
+nmap <F6> :bd<CR>
+
 let g:tagbar_type_typescript = {
   \ 'ctagsbin' : 'tstags',
   \ 'ctagsargs' : '-f-',
@@ -302,7 +315,7 @@ let g:tagbar_type_typescript = {
     \ 'M:Module:0:1',
     \ 'I:import:0:1',
     \ 'i:interface:0:1',
-    \ 'C:class:0:1',                                                               
+    \ 'C:class:0:1',
     \ 'm:method:0:1',
     \ 'p:property:0:1',
     \ 'v:variable:0:1',
@@ -312,7 +325,7 @@ let g:tagbar_type_typescript = {
 \ }
 
 " Add color scheme
-colorscheme jellybeans 
+colorscheme jellybeans
 
 " Highlight all instances of word under cursor, when idle.
 " Useful when studying strange source code.
@@ -336,3 +349,40 @@ function! AutoHighlightToggle()
     return 1
   endif
 endfunction
+
+" Show documentation of element under cursor
+nnoremap <silent> <leader>s :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Typescript tagbar
+let g:tagbar_type_typescript = {
+  \ 'ctagsbin' : 'tstags',
+  \ 'ctagsargs' : '-f-',
+  \ 'kinds': [
+    \ 'e:enums:0:1',
+    \ 'f:function:0:1',
+    \ 't:typealias:0:1',
+    \ 'M:Module:0:1',
+    \ 'I:import:0:1',
+    \ 'i:interface:0:1',
+    \ 'C:class:0:1',
+    \ 'm:method:0:1',
+    \ 'p:property:0:1',
+    \ 'v:variable:0:1',
+    \ 'c:const:0:1',
+  \ ],
+  \ 'sort' : 0
+  \ }
+
+" Function to remove trailing whitespaces `:call TrimWhitespace`
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
