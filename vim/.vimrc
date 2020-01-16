@@ -92,6 +92,7 @@ Plug 'neoclide/coc-git'
 Plug 'burntsushi/ripgrep'
 Plug 'nanotech/jellybeans.vim'
 Plug 'eugen0329/vim-esearch'
+Plug 'wakatime/vim-wakatime'
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
@@ -258,7 +259,8 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Useful Coc commands
 nmap <F4> :CocFix<CR>
 nmap <F3> :CocCommand eslint.executeAutofix<CR>
-nmap <c-j> :CocCommand document.jumpToNextSymbol<CR>
+nmap <leader>h :CocCommand document.jumpToNextSymbol<CR>
+nmap <F2> :ls<CR>
 
 " Using CocList
 " Show all diagnostics
