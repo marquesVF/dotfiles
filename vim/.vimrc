@@ -93,6 +93,8 @@ Plug 'burntsushi/ripgrep'
 Plug 'nanotech/jellybeans.vim'
 Plug 'eugen0329/vim-esearch'
 Plug 'wakatime/vim-wakatime'
+Plug 'coc-extensions/coc-svelte'
+Plug 'evanleck/vim-svelte'
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
