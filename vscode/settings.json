@@ -1,49 +1,27 @@
 {
     "workbench.iconTheme": "material-icon-theme",
-    "editor.fontFamily": "Source Code Pro",
-    "editor.rulers": [80, 90],
-    "editor.codeActionsOnSave": {
-        "source.fixAll.tslint": true
-    },
-    "window.zoomLevel": -1,
+    "editor.fontFamily": "Iosevka",
+    "editor.rulers": [80],
     "editor.minimap.enabled": false,
     "editor.renderFinalNewline": true,
     "gitlens.codeLens.enabled": false,
     "breadcrumbs.enabled": true,
-    "tslint.alwaysShowRuleFailuresAsWarnings": true,
-    "tslint.autoFixOnSave": true,
-    "sqltools.connections": [
-        {
-            "connectionTimeout": 30,
-            "database": "postgres",
-            "dialect": "PostgreSQL",
-            "name": "local",
-            "password": "123456",
-            "port": 5432,
-            "server": "127.0.0.1",
-            "username": "postgres"
-        }
-    ],
     "editor.fontLigatures": true,
-    "terraform.indexing": {
-        "enabled": false,
-        "liveIndexing": false,
-        "exclude": ["**/*"]
-    },
-    "[terraform]": {
-        "editor.tabSize": 2
-    },
-    "editor.rulers": [80],
     "workbench.colorCustomizations": {
         "editorRuler.foreground": "#ff333388"
+    },
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
     },
     "vim.autoindent": true,
     "editor.lineNumbers": "relative",
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "typescript.updateImportsOnFileMove.enabled": "always",
-    "python.jediEnabled": false,
-    "workbench.colorTheme": "Material Theme Darker",
+    "workbench.colorTheme": "One Monokai",
     "workbench.editor.showIcons": false,
-    "editor.fontSize": 14
+    "editor.fontSize": 12,
+    "workbench.activityBar.visible": false,
+    "window.zoomLevel": 0
 }
