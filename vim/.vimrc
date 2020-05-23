@@ -25,9 +25,6 @@ set foldlevel=99
 set autoread
 set clipboard=unnamedplus
 
-colo desert
-syntax on
-
 " Enable folding with the spacebar
 nnoremap <space> za
 
@@ -55,6 +52,7 @@ filetype plugin on
 call plug#begin('~/.vim/plugged')
 
 " Typescript related
+let g:typescript_indent_disable = 1
 
 " Productive
 Plug 'scrooloose/nerdtree' " File explorer
@@ -95,16 +93,13 @@ Plug 'eugen0329/vim-esearch'
 Plug 'wakatime/vim-wakatime'
 Plug 'coc-extensions/coc-svelte'
 Plug 'evanleck/vim-svelte'
-
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
-
 " Any valid git URL is allowed
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'kaicataldo/material.vim'
 
 " Using a non-master branch
 " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
@@ -137,7 +132,7 @@ nnoremap <space> za
 " CTRLP
 " Ignore some folders and files for CtrlP indexing
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.yardoc\|node_modules\|log\|tmp$\|build$',
+  \ 'dir':  '\.git$\|\.yardoc\|dist\|node_modules\|log\|tmp\|build\',
   \ 'file': '\.so$\|\.dat$|\.DS_Store$'
   \ }
 
@@ -390,3 +385,40 @@ fun! TrimWhitespace()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
 endfun
+
+" Color and theme configuration 
+if (has('termguicolors'))
+  set termguicolors
+endif
+let g:material_theme_style = 'default'
+colorscheme material
+
+" XML formatter
+function! DoPrettyXML()
+  " save the filetype so we can restore it later
+  let l:origft = &ft
+  set ft=
+  " delete the xml header if it exists. This will
+  " permit us to surround the document with fake tags
+  " without creating invalid xml.
+  1s/<?xml .*?>//e
+  " insert fake tags around the entire document.
+  " This will permit us to pretty-format excerpts of
+  " XML that may contain multiple top-level elements.
+  0put ='<PrettyXML>'
+  $put ='</PrettyXML>'
+  silent %!xmllint --format -
+  " xmllint will insert an <?xml?> header. it's easy enough to delete
+  " if you don't want it.
+  " delete the fake tags
+  2d
+  $d
+  " restore the 'normal' indentation, which is one extra level
+  " too deep due to the extra tags we wrapped around the document.
+  silent %<
+  " back to home
+  1
+  " restore the filetype
+  exe "set ft=" . l:origft
+endfunction
+command! PrettyXML call DoPrettyXML()
