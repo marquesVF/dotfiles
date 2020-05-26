@@ -100,6 +100,7 @@ Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'kaicataldo/material.vim'
+Plug 'morhetz/gruvbox'
 
 " Using a non-master branch
 " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
@@ -260,7 +261,7 @@ nmap <leader>h :CocCommand document.jumpToNextSymbol<CR>
 nmap <F2> :ls<CR>
 
 " Using CocList
-" Show all diagnostics
+
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
@@ -320,9 +321,6 @@ let g:tagbar_type_typescript = {
   \ ],
   \ 'sort' : 0
 \ }
-
-" Add color scheme
-colorscheme jellybeans
 
 " Highlight all instances of word under cursor, when idle.
 " Useful when studying strange source code.
@@ -388,8 +386,8 @@ endfun
 if (has('termguicolors'))
   set termguicolors
 endif
-let g:material_theme_style = 'default'
-colorscheme material
+set background=dark
+colorscheme gruvbox
 
 " XML formatter
 function! DoPrettyXML()
