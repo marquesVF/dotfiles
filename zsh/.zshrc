@@ -2,13 +2,13 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/vini/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="kolo"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -113,6 +113,19 @@ export LC_ALL=en_US.UTF-8
 alias hgit="git for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)'"
 alias hgito="git for-each-ref --sort=committerdate refs/remotes/origin/ --format='%(committerdate:short) %(refname:short)'"
 alias gcs="git checkout staging"
+alias gcd="git checkout developer"
 alias gcwip="git add '*.ts' '*.tsx' '*py' && git commit -m '[WIP]'"
 alias gane="git add . && git commit --amend --no-edit"
 
+alias clip="xclip -selection c"
+
+alias vim="nvim"
+
+# fnm
+export PATH=/home/vini/.fnm:$PATH
+eval "`fnm env --multi`"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

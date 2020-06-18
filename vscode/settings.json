@@ -21,7 +21,19 @@
     "typescript.updateImportsOnFileMove.enabled": "always",
     "workbench.colorTheme": "One Monokai",
     "workbench.editor.showIcons": false,
-    "editor.fontSize": 12,
+    "editor.fontSize": 11,
     "workbench.activityBar.visible": false,
-    "window.zoomLevel": 0
+    "window.zoomLevel": 0,
+    "terminal.integrated.shell.linux": "/usr/bin/zsh",
+    "terminal.integrated.fontSize": 12,
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false,
+        "<C-c>": false,
+        "<C-v>": false,
+        "<C-k>": false,
+        "<C-w>": false
+    },
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false
 }

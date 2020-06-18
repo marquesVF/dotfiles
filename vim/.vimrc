@@ -25,11 +25,20 @@ set foldlevel=99
 set autoread
 set clipboard=unnamedplus
 
+"Status-line
+set statusline=
+set statusline+=%#IncSearch#
+set statusline+=\ %y
+set statusline+=\ %r
+set statusline+=%#CursorLineNr#
+set statusline+=\ %F
+set statusline+=%= "Right side settings
+set statusline+=%#Search#
+set statusline+=\ %l/%L
+set statusline+=\ [%c]
+
 " Enable folding with the spacebar
 nnoremap <space> za
-
-" Show docstrings
-let g:SimpylFold_docstring_preview=1
 
 "split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -50,9 +59,6 @@ filetype plugin on
 " Specify a directory for plugins
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
-
-" Typescript related
-let g:typescript_indent_disable = 1
 
 " Productive
 Plug 'scrooloose/nerdtree' " File explorer
@@ -126,6 +132,12 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 :let g:NERDTreeShowLineNumbers=1
 :autocmd BufEnter NERD_* setlocal rnu
+
+" Show docstrings
+let g:SimpylFold_docstring_preview=1
+
+" Typescript related
+let g:typescript_indent_disable = 1
 
 " Enable folding with the spacebar
 nnoremap <space> za
