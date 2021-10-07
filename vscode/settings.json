@@ -10,22 +10,20 @@
     "workbench.colorCustomizations": {
         "editorRuler.foreground": "#ff333388"
     },
-    "typescript.preferences.importModuleSpecifier": "relative",
-    "editor.codeActionsOnSave": {
-        "source.fixAll": true
-    },
+    "typescript.preferences.importModuleSpecifier": "shortest",
     "vim.autoindent": true,
     "editor.lineNumbers": "relative",
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "typescript.updateImportsOnFileMove.enabled": "always",
-    "workbench.colorTheme": "One Monokai",
     "workbench.editor.showIcons": false,
-    "editor.fontSize": 11,
-    "workbench.activityBar.visible": false,
-    "window.zoomLevel": 0,
-    "terminal.integrated.shell.linux": "/usr/bin/zsh",
-    "terminal.integrated.fontSize": 12,
+    "terminal.integrated.fontSize": 13,
+    "terminal.integrated.profiles.linux": {
+        "zsh (login)": {
+            "path": "zsh",
+            "args": ["-l"]
+        }
+    },
     "vim.handleKeys": {
         "<C-a>": false,
         "<C-f>": false,
@@ -35,5 +33,55 @@
         "<C-w>": false
     },
     "explorer.confirmDelete": false,
-    "explorer.confirmDragAndDrop": false
+    "explorer.confirmDragAndDrop": false,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[python]": {
+        "editor.formatOnSave": true
+    },
+    "editor.fontSize": 15,
+    "javascript.preferences.importModuleSpecifier": "non-relative",
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "editor.tabSize": 2,
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "languageTool.enabled": true,
+    "languageTool.language": "en-US",
+    "mdb.confirmRunAll": false,
+    "workbench.colorTheme": "One Monokai",
+    "files.associations": {
+        "*.env.template": "env",
+        "*.env.test": "env"
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/*.pyc": {"when": "$(basename).py"}, 
+        "**/*__init__.py": true, 
+        "**/__pycache__": true
+    },
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "editor.semanticHighlighting.enabled": true,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "editor.bracketPairColorization.enabled": true
 }
