@@ -5,7 +5,7 @@ ZSH_THEME="kolo"
 
 plugins=(
     git
-    osx
+    macos
     zsh-autosuggestions
 )
 
