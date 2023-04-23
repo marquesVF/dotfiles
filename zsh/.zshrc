@@ -59,3 +59,9 @@ alias nd="npm run dev"
 alias nb="npm run build"
 alias ns="npm run start"
 alias nf="npm run fix"
+
+# cargo commands
+alias cb="cargo build"
+alias cbr="cargo build --release"
+alias cr="cargo run"
+alias ct="cargo test"
