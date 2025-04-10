@@ -29,6 +29,41 @@ wireless _first_ {
         format_down = "W: down"
 }
 
+battery all {
+         # This format shows the status (charging, discharging, full),
+        # the current percentage, and the estimated remaining time.
+        # format = "%status %percentage %remaining"
+
+        # A slightly simpler format showing just status and percentage:
+        format = "%status %percentage"
+
+        # # What to display if no battery is found
+        # format_down = "No Battery"
+
+        # Symbols/text used for different states
+        status_chr = "⚡ CHR"  # Charging
+        status_bat = "🔋 BAT"  # Discharging (on battery)
+        status_unk = "? UNK"  # Unknown status
+        status_full = "☻ FULL" # Fully charged
+
+        # # You might need to adjust BAT0 to match your system,
+        # # e.g., BAT1. Check /sys/class/power_supply/
+        # # path = "/sys/class/power_supply/BAT0/uevent" # Often auto-detected
+
+        # # Define a low threshold (e.g., 15%)
+        # low_threshold = 15
+        # threshold_type = "percentage"
+
+        # How to display when the battery is low
+        # format_low = "LOW BATT: %percentage"
+
+        # # Use the last known full capacity for percentage calculation
+        last_full_capacity = true
+
+        # # Hide seconds from the remaining time estimation
+        # hide_seconds = true
+}
+
 disk "/" {
         format = "%avail"
 }
