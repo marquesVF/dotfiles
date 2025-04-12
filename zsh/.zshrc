@@ -11,6 +11,7 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# Those are MacOS iTerm specific configurations
 bindkey "[C" forward-word
 bindkey "[D" backward-word
 
@@ -25,9 +26,11 @@ alias gch="git checkout $1"
 alias gcs="git checkout staging"
 alias gda="git add ."
 alias gdifflist="git show --pretty="" --name-only"
-alias glg="git log"
+alias gl="git log"
+alias gst="git status"
 alias gpushd="git push -u origin HEAD"
-alias greb="git rebase master"
+alias greb="git rebase master" # deprecated - use 'main' instead
+alias grm="git rebase main"
 alias grest="git restore --staged ."
 alias gundo="git reset --soft HEAD^ && grest"
 alias gwip="git add . && git commit -m 'WIP'"
@@ -65,3 +68,6 @@ alias cb="cargo build"
 alias cbr="cargo build --release"
 alias cr="cargo run"
 alias ct="cargo test"
+
+# Xclip for clipboard
+alias xcp="xclip -selection clipboard"
