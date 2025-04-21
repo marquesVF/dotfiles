@@ -192,3 +192,10 @@ exec compton
 
 # Floating issue
 floating_maximum_size 1025 x 624
+
+# Shutdown the computer
+bindsym $mod+Shift+x exec --no-startup-id systemctl poweroff
+
+# Lock screen with Mod+Shift+Z
+bindsym $mod+Shift+z exec i3lock -c 000000
+
